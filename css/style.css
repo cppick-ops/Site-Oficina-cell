@@ -557,3 +557,8 @@ a.card:hover { box-shadow: var(--shadow); transform: translateY(-2px); border-co
   .grid--compacto h3 { font-size: 1rem; margin: 0; }
   .grid--compacto .card__link { margin-top: 8px; font-size: 0.85rem; }
 }
+
+/* ---------- Fotos e vídeos reais ---------- */
+.midia { display: block; width: 100%; border-radius: var(--radius); background: var(--preto); object-fit: cover; }
+.midia--retrato { aspect-ratio: 4 / 5; max-height: 560px; }
+.midia--card { aspect-ratio: 4 / 3; height: auto; min-height: 220px; }

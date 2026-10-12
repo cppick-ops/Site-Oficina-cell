@@ -696,7 +696,9 @@ def pagina_inicial():
         </div>
         <p style="margin-top:24px"><a class="btn btn--primary" href="contato.html">Como chegar</a></p>
       </div>
-      <div class="placeholder placeholder--tall">[Foto: fachada da loja]</div>
+      <video class="midia midia--retrato" autoplay muted loop playsinline preload="metadata" poster="img/fachada-dia.jpg" aria-label="Fachada da {LOJA['nome']}, na Rua Júlio de Castilhos, 361">
+        <source src="img/fachada.mp4" type="video/mp4">
+      </video>
     </div>
   </section>
 
@@ -989,7 +991,7 @@ def pagina_contato():
         <p>{pendente('Há quantos anos a loja atende e um pouco da história')}</p>
       </div>
       <div class="grid grid--3">
-        <div class="placeholder">[Foto: fachada da loja]</div>
+        <img class="midia midia--card" src="img/fachada-noite.jpg" alt="Fachada da {LOJA['nome']} à noite, com o letreiro iluminado" width="900" height="1200" loading="lazy">
         <div class="placeholder">[Foto: bancada de reparo]</div>
         <div class="placeholder">[Foto: equipe]</div>
       </div>
