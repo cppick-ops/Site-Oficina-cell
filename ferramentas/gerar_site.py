@@ -591,6 +591,12 @@ def pagina_inicial():
     </div>
   </section>
 
+  <section class="section section--boleto">
+    <div class="container">
+{faixa_boleto()}
+    </div>
+  </section>
+
   <section class="section" id="servicos">
     <div class="container">
       <div class="section__head">
@@ -666,8 +672,7 @@ def pagina_inicial():
         <h2>Celulares novos, seminovos e acessórios</h2>
         <p>Encontre seu próximo celular ou traga o usado para avaliarmos na troca. {BOLETO_TEXTO}</p>
       </div>
-{faixa_boleto()}
-      <div class="grid grid--3" style="margin-top:20px">
+      <div class="grid grid--3">
         <a class="card" href="aparelhos.html#seminovos">
           <span class="card__icon">{I['celular']}</span>
           <h3>Novos e seminovos</h3>
