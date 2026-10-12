@@ -33,6 +33,7 @@ LOJA = {
     "garantia": "mínimo de 90 dias",
     "horario": "Segunda a sexta, das 9h às 18h · Sábado, das 9h às 17h",
     "cnpj": "37.566.888/0001-34",
+    "anos": 6,  # anos de mercado: atualizar todo ano
 }
 
 # Horário em formato do schema.org (usado pelo Google)
@@ -567,7 +568,7 @@ def pagina_inicial():
         <div class="trust">
           <div class="trust__item">{I['relogio']} Reparos comuns no mesmo dia</div>
           <div class="trust__item">{I['escudo']} Garantia mínima de 90 dias</div>
-          <div class="trust__item">{I['loja']} Loja física no centro</div>
+          <div class="trust__item">{I['loja']} {LOJA['anos']} anos no centro da cidade</div>
         </div>
       </div>
 {form_orcamento()}
@@ -633,6 +634,7 @@ def pagina_inicial():
         </div>
         <ul>
           <li>{I['check']} Troca de tela, bateria e conector no mesmo dia</li>
+          <li>{I['check']} Há {LOJA['anos']} anos em Santa Cruz do Sul</li>
           <li>{I['check']} Reparo de placa com diagnóstico antes de aprovar</li>
           <li>{I['check']} Única loja da cidade que troca só o vidro</li>
           <li>{I['check']} Especialistas em Apple, inclusive Apple Watch</li>
@@ -988,7 +990,7 @@ def pagina_contato():
         <span class="eyebrow">Sobre nós</span>
         <h2>Especialistas em conserto de celulares e tablets</h2>
         <p>A {LOJA['nome']} é especializada em reparos avançados de placa da Apple e das grandes marcas. Também fazemos troca de tela, bateria e conector no mesmo dia, consertamos Apple Watch e MacBook, fazemos formatação e remoção de vírus, e vendemos aparelhos novos, seminovos e acessórios. Somos a única loja de Santa Cruz do Sul que troca só o vidro da tela, mantendo a tela original do celular ou do Apple Watch.</p>
-        <p>{pendente('Há quantos anos a loja atende e um pouco da história')}</p>
+        <p>Há {LOJA['anos']} anos atendemos Santa Cruz do Sul e região.</p>
       </div>
       <div class="grid grid--3">
         <img class="midia midia--card" src="img/fachada-noite.jpg" alt="Fachada da {LOJA['nome']} à noite, com o letreiro iluminado" width="900" height="1200" loading="lazy">

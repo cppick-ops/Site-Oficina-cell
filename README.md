@@ -23,10 +23,13 @@ python3 ferramentas/gerar_site.py
 
 O visual fica em `css/style.css`. O número do WhatsApp usado pelos formulários fica em `js/main.js`.
 
+## Atualização anual
+
+Os anos de mercado (`"anos"` em `LOJA`, em `ferramentas/gerar_site.py`) aparecem na página inicial e na página de contato. Atualize todo ano e gere as páginas de novo.
+
 ## Conteúdos pendentes
 
 Aparecem destacados em amarelo ou com borda tracejada no site:
 
 - Fotos: fachada, bancada, equipe, vitrine e aparelhos à venda
-- História da loja (anos de mercado)
 - Aparelhos disponíveis para venda
