@@ -73,6 +73,7 @@ I = {
     "watch": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="3"/><path d="M9 6 9.5 2h5L15 6M9 18l.5 4h5l.5-4"/><path d="M18 10.5h1"/></svg>',
     "estrela": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>',
     "notebook": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="16" height="11" rx="1.5"/><path d="M2 19h20l-1.5-4h-17z"/></svg>',
+    "boleto": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M6 9v6M9 9v6M11.5 9v6M14 9v6M18 9v6"/></svg>',
     "bateria": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="4" width="10" height="18" rx="2"/><path d="M10 2h4"/><path d="m12.5 9-2 4h3l-2 4"/></svg>',
     "conector": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22v-5"/><path d="M9 8V2M15 8V2"/><path d="M18 8v4a6 6 0 0 1-12 0V8z"/></svg>',
     "placa": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="5" width="14" height="14" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3"/></svg>',
@@ -299,6 +300,20 @@ SERVICOS = [
     },
 ]
 
+BOLETO_TEXTO = "Compre seu celular no boleto em até 18x, sem consulta ao SPC/Serasa."
+
+
+def faixa_boleto():
+    return f"""      <div class="exclusivo exclusivo--boleto">
+        <div class="exclusivo__selo">{I['boleto']} Sem consulta SPC/Serasa</div>
+        <div>
+          <h2>Celular no boleto em até 18x</h2>
+          <p>Compre seu celular novo ou seminovo parcelado no boleto, sem consulta ao SPC/Serasa. Consulte as condições na loja ou pelo WhatsApp.</p>
+        </div>
+        <a class="btn btn--whats" href="{whats_link('Olá, Oficina Cell Santa Cruz! Quero comprar um celular no boleto em até 18x.')}" target="_blank" rel="noopener">{I['whats']} Quero no boleto</a>
+      </div>"""
+
+
 OUTROS_REPAROS = "Câmera, alto-falante, microfone, botões, tampa traseira e outros reparos."
 
 
@@ -516,6 +531,7 @@ FAQ_HOME = [
     ("Preciso agendar?", "Não. Você pode vir direto à loja no centro de Santa Cruz do Sul. Se mandar o modelo antes pelo WhatsApp, já deixamos tudo encaminhado."),
     ("Vocês atendem clientes de outras cidades?", "Sim. Atendemos clientes de Santa Cruz do Sul e de toda a região, como Venâncio Aires, Vera Cruz, Rio Pardo, Candelária e Sinimbu."),
     ("Vocês consertam iPhone e Apple Watch?", "Sim. Somos especializados em Apple e nas grandes marcas, incluindo reparos avançados de placa e conserto de Apple Watch."),
+    ("Posso comprar celular no boleto?", "Sim. Vendemos celulares no boleto em até 18x, sem consulta ao SPC/Serasa. Consulte as condições na loja ou pelo WhatsApp."),
     ("Vocês consertam MacBook?", "Sim. Fazemos troca de tela, bateria e teclado de MacBook, e temos carregadores, cabos, adaptadores e hubs."),
     ("Vocês trocam só o vidro da tela?", "Sim. Somos a única loja de Santa Cruz do Sul que troca apenas o vidro, mantendo a tela original do celular ou do Apple Watch. Funciona quando a imagem e o toque continuam bons."),
 ]
@@ -648,13 +664,14 @@ def pagina_inicial():
       <div class="section__head">
         <span class="eyebrow">Aparelhos e acessórios</span>
         <h2>Celulares novos, seminovos e acessórios</h2>
-        <p>Encontre seu próximo celular ou traga o usado para avaliarmos na troca.</p>
+        <p>Encontre seu próximo celular ou traga o usado para avaliarmos na troca. {BOLETO_TEXTO}</p>
       </div>
-      <div class="grid grid--3">
+{faixa_boleto()}
+      <div class="grid grid--3" style="margin-top:20px">
         <a class="card" href="aparelhos.html#seminovos">
           <span class="card__icon">{I['celular']}</span>
           <h3>Novos e seminovos</h3>
-          <p>iPhone e Android com garantia. Veja os aparelhos disponíveis.</p>
+          <p>iPhone e Android com garantia. No boleto em até 18x, sem consulta ao SPC/Serasa.</p>
           <span class="card__link">Ver aparelhos →</span>
         </a>
         <a class="card" href="aparelhos.html#troca">
@@ -819,6 +836,7 @@ def pagina_servico(s):
 
 # ---------------------------------------------------------------- aparelhos e acessórios
 FAQ_APARELHOS = [
+    ("Posso comprar no boleto?", "Sim. Vendemos celulares no boleto em até 18x, sem consulta ao SPC/Serasa. Consulte as condições na loja ou pelo WhatsApp."),
     ("Os seminovos têm garantia?", "Sim. Todos os aparelhos vendidos têm garantia mínima de 90 dias, que pode ser maior conforme o produto."),
     ("Vocês aceitam meu usado na troca?", "Sim. Preencha a avaliação com o modelo e o estado do aparelho e respondemos pelo WhatsApp com uma proposta."),
     ("Como sei quais aparelhos estão disponíveis?", "Os aparelhos em estoque aparecem nesta página e no nosso Instagram. Para confirmar disponibilidade, chame no WhatsApp."),
@@ -854,13 +872,19 @@ def pagina_aparelhos():
       <div>
         <nav class="breadcrumb" aria-label="Você está em"><a href="index.html">Início</a> › Aparelhos e acessórios</nav>
         <h1>Celulares novos, seminovos e acessórios em Santa Cruz do Sul</h1>
-        <p class="hero__lead">iPhone e Android novos e seminovos, com garantia mínima de 90 dias. Traga seu usado para avaliarmos na troca.</p>
+        <p class="hero__lead">iPhone e Android novos e seminovos, com garantia mínima de 90 dias. Compre no boleto em até 18x, sem consulta ao SPC/Serasa, e traga seu usado para avaliarmos na troca.</p>
         <div class="hero__actions">
           <a class="btn btn--whats" href="{whats_link('Olá, Oficina Cell Santa Cruz! Quero saber quais aparelhos estão disponíveis.')}" target="_blank" rel="noopener">{I['whats']} Ver disponíveis no WhatsApp</a>
           <a class="btn btn--ghost" href="{LOJA['instagram']}" target="_blank" rel="noopener">{I['instagram']} Instagram</a>
         </div>
       </div>
       <div class="placeholder">[Foto: vitrine de aparelhos da loja]</div>
+    </div>
+  </section>
+
+  <section class="section section--boleto">
+    <div class="container">
+{faixa_boleto()}
     </div>
   </section>
 
@@ -948,7 +972,7 @@ def pagina_aparelhos():
     return (
         head(
             "Celulares novos e seminovos em Santa Cruz do Sul | Oficina Cell Santa Cruz",
-            "iPhone e Android novos e seminovos com garantia mínima de 90 dias em Santa Cruz do Sul. Avalie seu usado para troca. Acessórios para celular e MacBook.",
+            "iPhone e Android novos e seminovos em Santa Cruz do Sul, no boleto em até 18x sem consulta ao SPC/Serasa. Garantia mínima de 90 dias e avaliação do seu usado na troca.",
             "aparelhos.html",
             "",
             [faq_jsonld(FAQ_APARELHOS)],
