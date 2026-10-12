@@ -698,9 +698,7 @@ def pagina_inicial():
         </div>
         <p style="margin-top:24px"><a class="btn btn--primary" href="contato.html">Como chegar</a></p>
       </div>
-      <video class="midia midia--retrato" autoplay muted loop playsinline preload="metadata" poster="img/fachada-dia.jpg" aria-label="Fachada da {LOJA['nome']}, na Rua Júlio de Castilhos, 361">
-        <source src="img/fachada.mp4" type="video/mp4">
-      </video>
+      <img class="midia midia--retrato" src="img/fachada-dia.jpg" alt="Fachada da {LOJA['nome']}, na Rua Júlio de Castilhos, 361" width="900" height="1600" loading="lazy">
     </div>
   </section>
 
