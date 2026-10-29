@@ -178,6 +178,14 @@ test("áudio vira um aviso para a IA pedir texto; reação é ignorada", () => {
   assert.match(eventos[0].texto, /áudio/);
 });
 
+test("modo de teste: só responde aos números liberados, mesmo sem o 9", async () => {
+  const { deps, enviadas } = montar([texto("Oi!")]);
+  deps.liberados = ["+55 51 98888-7777"];
+  await tratarEventos(lerEventos(avisoDaMeta([{ ...msg("m1", "oi"), from: "555188887777" }])), deps);
+  await tratarEventos(lerEventos(avisoDaMeta([{ ...msg("m2", "oi"), from: "5551977776666" }])), deps);
+  assert.deepEqual(enviadas.map((e) => e.telefone), ["555188887777"]);
+});
+
 test("confere a assinatura da Meta", () => {
   const corpo = '{"entry":[]}';
   const assinatura = "sha256=" + createHmac("sha256", "segredo").update(corpo).digest("hex");

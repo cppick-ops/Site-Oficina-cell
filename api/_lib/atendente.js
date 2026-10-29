@@ -17,6 +17,7 @@ export async function tratarEventos(eventos, deps) {
   const clientes = new Set();
   for (const evento of eventos) {
     if (evento.tipo !== "mensagem") continue;
+    if (!liberado(evento.telefone, deps.liberados)) continue; // modo de teste: só os números liberados
     if (!(await deps.memoria.primeiraVez(evento.id))) continue;
     if (await deps.memoria.pausado(evento.telefone)) continue; // um humano está atendendo
 
@@ -118,6 +119,24 @@ async function passarParaHumano(telefone, motivo, deps) {
   await deps.memoria.pausar(telefone, motivo);
   await deps.whatsapp.enviarTexto(telefone, MSG_ERRO).catch((erro) => console.error(erro));
   console.log(`[ATENDENTE] ${telefone} · ${motivo} · a IA não conseguiu responder`);
+}
+
+// Modo de teste: com a lista preenchida, a IA só responde a esses números.
+// Lista vazia = responde a todos.
+function liberado(telefone, liberados = []) {
+  return liberados.length === 0 || liberados.some((numero) => mesmoNumero(numero, telefone));
+}
+
+// Compara números ignorando sinais e o 9 dos celulares do Brasil, que o WhatsApp às vezes omite
+// (ex.: +55 51 98349-6440 chega como 555183496440)
+function mesmoNumero(a, b) {
+  const normalizar = (numero) => {
+    const digitos = String(numero).replace(/\D/g, "");
+    return digitos.length === 13 && digitos.startsWith("55") && digitos[4] === "9"
+      ? digitos.slice(0, 4) + digitos.slice(5)
+      : digitos;
+  };
+  return normalizar(a) === normalizar(b);
 }
 
 // Ex.: "[quinta-feira, 29/10/2026, 14:32 · cliente: Ana]\n"

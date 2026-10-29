@@ -41,6 +41,7 @@ function dependencias() {
       versao: process.env.WHATSAPP_API_VERSION,
     }),
     claude: new Anthropic(),
+    liberados: (process.env.TELEFONES_LIBERADOS ?? "").split(",").filter((numero) => numero.trim()),
     agora: () => new Date(),
   };
 }

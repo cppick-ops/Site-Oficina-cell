@@ -446,6 +446,7 @@ def footer(prefixo):
           <li><a href="{LOJA['link_google']}" target="_blank" rel="noopener">Avaliações no Google</a></li>
           <li><a href="{prefixo}aparelhos.html">Aparelhos e acessórios</a></li>
           <li><a href="{prefixo}contato.html">Como chegar</a></li>
+          <li><a href="{prefixo}privacidade.html">Política de privacidade</a></li>
         </ul>
       </div>
       <div class="footer__bottom">© <span data-ano></span> {LOJA['nome']}. Todos os direitos reservados.</div>
@@ -1041,9 +1042,62 @@ def pagina_contato():
     )
 
 
+def pagina_privacidade():
+    corpo = f"""  <main>
+  <section class="page-hero">
+    <div class="container">
+      <div>
+        <nav class="breadcrumb" aria-label="Você está em"><a href="index.html">Início</a> › Política de privacidade</nav>
+        <h1>Política de privacidade</h1>
+        <p class="hero__lead">Como a {LOJA['nome']} usa os dados de quem visita o site e fala com a gente pelo WhatsApp.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container prose">
+      <h2>Quem somos</h2>
+      <p>{LOJA['nome']}, CNPJ {LOJA['cnpj']}, {LOJA['rua']}, {LOJA['complemento']}, {LOJA['cidade']}/{LOJA['uf']}. Para qualquer assunto sobre seus dados, fale com a gente pelo WhatsApp <a href="{whats_link('Olá! Tenho uma dúvida sobre meus dados.')}" target="_blank" rel="noopener">{LOJA['whats_exibicao']}</a>.</p>
+
+      <h2>Site</h2>
+      <p>O site não pede cadastro e não usa ferramentas de rastreamento ou de anúncios. Os formulários de orçamento e de avaliação do usado só montam uma mensagem e abrem o seu WhatsApp: nada é guardado pelo site. A página de contato mostra um mapa do Google Maps, que segue a política de privacidade do Google.</p>
+
+      <h2>Atendimento pelo WhatsApp</h2>
+      <p>Quando você manda mensagem para o nosso WhatsApp, a primeira resposta pode vir da nossa assistente virtual, um sistema de inteligência artificial. Para responder, usamos:</p>
+      <ul>
+        <li>seu número de WhatsApp, o nome do seu perfil e o texto das mensagens;</li>
+        <li>a plataforma oficial do WhatsApp Business, da Meta, que entrega as mensagens;</li>
+        <li>a Anthropic (Claude), que gera as respostas a partir das mensagens. A Anthropic não usa esses dados para treinar seus modelos;</li>
+        <li>a Vercel e a Upstash, que hospedam o sistema e guardam a conversa enquanto ela está acontecendo.</li>
+      </ul>
+      <p>Usamos esses dados só para responder você, fazer orçamentos e cuidar do seu atendimento. Não vendemos nem compartilhamos com outras empresas para propaganda.</p>
+      <p>A cópia da conversa usada pela assistente virtual é apagada automaticamente 24 horas depois da última mensagem. A conversa continua no WhatsApp da loja, como em qualquer atendimento.</p>
+
+      <h2>Seus direitos e exclusão dos dados</h2>
+      <p>Pela Lei Geral de Proteção de Dados (LGPD), você pode pedir para ver, corrigir ou apagar seus dados. Para isso, mande "apagar meus dados" no nosso WhatsApp <a href="{whats_link('Olá! Quero apagar meus dados.')}" target="_blank" rel="noopener">{LOJA['whats_exibicao']}</a>. Apagamos as conversas e confirmamos em até 15 dias. Dados que a lei obriga a guardar, como notas fiscais, são mantidos pelo prazo legal.</p>
+
+      <h2>Mudanças</h2>
+      <p>Se esta política mudar, a versão nova fica sempre nesta página. Última atualização: outubro de 2026.</p>
+    </div>
+  </section>
+  </main>
+"""
+    return (
+        head(
+            "Política de privacidade | Oficina Cell Santa Cruz",
+            f"Como a {LOJA['nome']} usa os dados de quem visita o site e fala com a loja pelo WhatsApp.",
+            "privacidade.html",
+            "",
+        )
+        + header("", "privacidade")
+        + corpo
+        + footer("")
+    )
+
+
 # ---------------------------------------------------------------- arquivos auxiliares
 def sitemap():
-    urls = ["", "aparelhos.html", "contato.html"] + [f"servicos/{s['slug']}.html" for s in SERVICOS]
+    urls = ["", "aparelhos.html", "contato.html", "privacidade.html"] + [f"servicos/{s['slug']}.html" for s in SERVICOS]
     itens = "\n".join(f"  <url><loc>{LOJA['dominio']}/{u}</loc></url>" for u in urls)
     return f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n{itens}\n</urlset>\n'
 
@@ -1063,6 +1117,7 @@ def main():
     escrever("index.html", pagina_inicial())
     escrever("aparelhos.html", pagina_aparelhos())
     escrever("contato.html", pagina_contato())
+    escrever("privacidade.html", pagina_privacidade())
     for s in SERVICOS:
         escrever(f"servicos/{s['slug']}.html", pagina_servico(s))
     escrever("sitemap.xml", sitemap())

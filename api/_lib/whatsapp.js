@@ -2,7 +2,7 @@
 
 import { createHmac, timingSafeEqual } from "node:crypto";
 
-export function criarWhatsApp({ token, idNumero, versao = "v23.0", fetch = globalThis.fetch }) {
+export function criarWhatsApp({ token, idNumero, versao = "v25.0", fetch = globalThis.fetch }) {
   async function enviar(corpo) {
     const resposta = await fetch(`https://graph.facebook.com/${versao}/${idNumero}/messages`, {
       method: "POST",

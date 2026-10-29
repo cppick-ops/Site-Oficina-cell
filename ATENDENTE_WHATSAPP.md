@@ -36,7 +36,7 @@ Em [platform.claude.com](https://platform.claude.com), crie uma chave de API e c
 ### 3. App na Meta
 
 1. Em [developers.facebook.com](https://developers.facebook.com), crie um app do tipo **Business** e adicione o produto **WhatsApp**, ligado ao portfólio empresarial (Meta Business) da loja.
-2. **Comece pelo número de teste** que a Meta oferece de graça. Cadastre o seu celular como destinatário e teste tudo antes de mexer no número da loja.
+2. **O número de teste da Meta não serve no Brasil.** Ele é dos EUA, e a Meta bloqueia mensagens de empresas de fora do Brasil para brasileiros (erro 130497). Por isso o teste é feito direto no número da loja, com o modo de teste ligado (veja abaixo).
 3. Para usar o número atual **(51) 99525-5010** sem deixar de usar o app WhatsApp Business no celular, a Meta oferece a **coexistência**: o número fica no app e na API ao mesmo tempo, e as conversas aparecem nos dois. O app WhatsApp Business precisa estar atualizado. Na hora de conectar, confira se a opção de conectar um número que já usa o app aparece para a sua conta. Se não aparecer, a alternativa é passar por um parceiro oficial da Meta (BSP) que ofereça coexistência. **Não** cadastre o número da loja do jeito comum, que tira o número do app.
 
 ### 4. Variáveis da Meta na Vercel
@@ -47,6 +47,7 @@ Em [platform.claude.com](https://platform.claude.com), crie uma chave de API e c
 | `WHATSAPP_TOKEN` | Configurações do negócio > Usuários do sistema > crie um usuário do sistema, adicione o app e gere um token com a permissão `whatsapp_business_messaging`. O token temporário da tela de teste expira em 24h. |
 | `WHATSAPP_APP_SECRET` | Configurações do app > Básico > Chave secreta do app |
 | `WHATSAPP_VERIFY_TOKEN` | Invente uma senha qualquer (ex.: uma frase longa). Vai ser usada no passo 5. |
+| `TELEFONES_LIBERADOS` | **Modo de teste.** Números separados por vírgula (ex.: `5551983496440`). Com ela preenchida, a IA só responde a esses números e ignora os clientes. Para a IA atender todo mundo, apague a variável e faça um novo deploy. |
 
 Depois de criar as variáveis, faça um novo deploy (as variáveis só valem a partir do próximo deploy).
 
@@ -65,6 +66,15 @@ Pronto: mande uma mensagem para o número e veja a resposta. Os registros ficam 
 - **Meta:** responder mensagens que o cliente mandou é gratuito. Só mensagens que a loja inicia (promoções, lembretes) são cobradas, e esse sistema não manda nenhuma.
 - **Claude:** cobrado por uso. Com o modelo atual (Claude Haiku 5.5), uma conversa custa uma fração de centavo de dólar: 20 a 30 conversas por dia dão uns US$ 2 a 3 por mês. Acompanhe em platform.claude.com > Usage. Se as respostas ficarem fracas, troque `MODELO` em `api/_lib/atendente.js` por `claude-sonnet-5-5` (uns US$ 30 a 47 por mês no mesmo volume).
 - **Vercel e Upstash:** o plano gratuito deve bastar para o volume de uma loja.
+
+## Publicar o app na Meta
+
+Para receber mensagens de clientes de verdade, o app precisa estar publicado (modo "Live"). A Meta pede:
+
+- Política de privacidade: `https://www.oficinacell.com.br/privacidade.html`
+- Exclusão de dados: o mesmo endereço (a página explica como pedir)
+- Ícone: `img/logo-icone.png`
+- Categoria: Negócios e páginas (ou Mensagens)
 
 ## Limites desta primeira versão
 
