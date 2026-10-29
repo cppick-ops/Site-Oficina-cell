@@ -2,7 +2,7 @@
 
 Site da Oficina Cell Santa Cruz: assistência técnica de celulares, aparelhos novos e seminovos e acessórios em Santa Cruz do Sul/RS.
 
-Site estático em HTML, CSS e JavaScript, sem dependências. Funciona em qualquer hospedagem simples, inclusive no GitHub Pages.
+Site estático em HTML, CSS e JavaScript. As páginas funcionam em qualquer hospedagem simples. O atendente virtual do WhatsApp (pasta `api/`) só funciona na Vercel: veja [ATENDENTE_WHATSAPP.md](ATENDENTE_WHATSAPP.md).
 
 ## Páginas
 
