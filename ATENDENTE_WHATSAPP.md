@@ -63,7 +63,7 @@ Pronto: mande uma mensagem para o número e veja a resposta. Os registros ficam 
 ## Custos
 
 - **Meta:** responder mensagens que o cliente mandou é gratuito. Só mensagens que a loja inicia (promoções, lembretes) são cobradas, e esse sistema não manda nenhuma.
-- **Claude:** cobrado por uso. Com o modelo atual (Claude Opus 5.5), cada resposta custa na faixa de alguns centavos de dólar; conversas longas custam mais, porque a conversa inteira é enviada a cada mensagem. Acompanhe em platform.claude.com > Usage. Para gastar bem menos, dá para trocar `MODELO` em `api/_lib/atendente.js` por `claude-haiku-5-5`, mas teste antes se a qualidade das respostas continua boa.
+- **Claude:** cobrado por uso. Com o modelo atual (Claude Haiku 5.5), uma conversa custa uma fração de centavo de dólar: 20 a 30 conversas por dia dão uns US$ 2 a 3 por mês. Acompanhe em platform.claude.com > Usage. Se as respostas ficarem fracas, troque `MODELO` em `api/_lib/atendente.js` por `claude-sonnet-5-5` (uns US$ 30 a 47 por mês no mesmo volume).
 - **Vercel e Upstash:** o plano gratuito deve bastar para o volume de uma loja.
 
 ## Limites desta primeira versão

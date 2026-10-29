@@ -40,14 +40,12 @@ function claudeFalso(respostas) {
   const pedidos = [];
   return {
     pedidos,
-    beta: {
-      messages: {
-        async create(pedido) {
-          pedidos.push(structuredClone(pedido));
-          const resposta = respostas.shift();
-          if (resposta instanceof Error) throw resposta;
-          return resposta;
-        },
+    messages: {
+      async create(pedido) {
+        pedidos.push(structuredClone(pedido));
+        const resposta = respostas.shift();
+        if (resposta instanceof Error) throw resposta;
+        return resposta;
       },
     },
   };
@@ -92,7 +90,7 @@ test("responde uma dúvida simples com data, hora e nome do cliente", async () =
 
   assert.deepEqual(enviadas, [{ telefone: "5551988887777", texto: "Oi, Ana! Abrimos de segunda a sexta, das 9h às 18h." }]);
   const pedido = claude.pedidos[0];
-  assert.equal(pedido.model, "claude-opus-5-5");
+  assert.equal(pedido.model, "claude-haiku-5-5");
   assert.match(pedido.messages[0].content, /^\[quinta-feira, 29\/10\/2026, 14:32 · cliente: Ana\]\nque horas vcs abrem\?$/);
 });
 

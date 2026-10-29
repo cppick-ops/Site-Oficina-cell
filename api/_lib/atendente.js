@@ -2,7 +2,7 @@
 
 import { INSTRUCOES, FERRAMENTAS } from "./conhecimento.js";
 
-const MODELO = "claude-opus-5-5";
+const MODELO = "claude-haiku-5-5"; // rápido e barato; para respostas mais caprichadas: "claude-sonnet-5-5"
 const ESPERA_MS = 2500; // espera o cliente terminar de digitar antes de responder
 const LIMITE_HISTORICO = 80; // conversa muito longa recomeça do zero
 const MSG_ERRO = "Oi! Já já um atendente da loja te responde por aqui. 😊";
@@ -58,12 +58,10 @@ async function responder(telefone, texto, deps) {
   for (let rodada = 0; rodada < 4; rodada++) {
     let resposta;
     try {
-      resposta = await claude.beta.messages.create({
+      resposta = await claude.messages.create({
         model: MODELO,
         max_tokens: 16000,
         output_config: { effort: "low" },
-        betas: ["server-side-fallback-2026-07-01"],
-        fallbacks: "default",
         cache_control: { type: "ephemeral" },
         system: INSTRUCOES,
         tools: FERRAMENTAS,
